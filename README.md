@@ -1,1 +1,1 @@
-#cnmnews
+#CNMNEWS
