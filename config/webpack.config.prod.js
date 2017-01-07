@@ -9,8 +9,8 @@ var srcDir = path.resolve(__dirname, '../app/javascripts/');
 var env = process.env.NODE_ENV;
 var domain = require('./domain.' +env + '.js');
 // 入口文件 && 模板
-var tmplFiles = ['user', 'rider'];
-var entryFiles = [path.join(srcDir, 'user.js'), path.join(srcDir, 'rider.js')];
+var tmplFiles = ['index'];
+var entryFiles = [path.join(srcDir, 'index.js')];
 var entries = function() {
     var  map = {}
     entryFiles.forEach(function(filePath) {
