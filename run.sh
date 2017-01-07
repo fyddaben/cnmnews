@@ -6,17 +6,17 @@ SHELL_PATH=$(cd `dirname $0`; pwd)
 export PATH=/usr/local/bin:$PATH
 
 build_local() {
-     ENV=true NODE_ENV=local node bundle.js && firebase serve;
+  ENV=true NODE_ENV=local node bundle.js & firebase serve;
 }
 
 build_clean() {
-    echo "clean no"
-    rm -rf ./dist/*;
+  echo "clean dist dir ..."
+  rm -rf ./dist/*;
 }
 
 build_prod() {
     build_clean;
-    NODE_ENV=prod webpack --config config/webpack.config.prod.js && firebase deploy;
+    NODE_ENV=prod webpack --config config/webpack.config.prod.js
 }
 
 cd $SHELL_PATH
