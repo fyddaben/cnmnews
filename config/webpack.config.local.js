@@ -71,10 +71,6 @@ module.exports = {
         loader: 'vue-loader',
         exclude: /(node_modules|bower_components)/
       }, {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
-        exclude: /(node_modules|bower_components)/
-      }, {
         test:  /\.(png|jpg)$/,
         loader: 'url?limit=25000',
         exclude: /(node_modules|bower_components)/
@@ -99,6 +95,23 @@ module.exports = {
   },
   resolveLoader: {
     root: path.join(__dirname, "../node_modules"),
+  },
+  vue: {
+    postcss: [
+      require('postcss-cssnext')(),
+      require('postcss-nesting')(),
+      require('postcss-bem')({
+        defaultNamespace: undefined, // default namespace to use, none by default
+        style: 'bem', // suit or bem, suit by default,
+        separators: {
+          'modifier': '-' // overwrite any default separator for chosen style
+        },
+        shortcuts: {
+          'component': 'b',
+          'modifier': 'm' //override at-rule name
+        }
+      }),
+    ]
   },
   plugins: pluginList
 };
