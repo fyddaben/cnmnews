@@ -1,4 +1,4 @@
-import Main from '../components/main.vue'
+import Main from '../pages/main.vue'
 const routes = [
   {
     path: '/index',
