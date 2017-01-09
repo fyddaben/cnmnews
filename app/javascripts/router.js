@@ -1,8 +1,13 @@
 import Main from '../pages/main.vue'
+import Source from '../pages/source.vue'
 const routes = [
   {
     path: '/index',
     component: Main,
+  },
+  {
+    path: '/source',
+    component: Source,
   },
   {
     path: '/',

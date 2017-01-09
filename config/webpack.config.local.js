@@ -91,6 +91,7 @@ module.exports = {
       'vue':path.join(__dirname, "../node_modules/vue/dist/vue.js"),
       'vuerouter':path.join(__dirname, "../node_modules/vue-router/dist/vue-router.js"),
       'vuex':path.join(__dirname, "../node_modules/vuex/dist/vuex.js"),
+      'vue-resource':path.join(__dirname, "../node_modules/vue-resource/dist/vue-resource.js"),
     }
   },
   resolveLoader: {
