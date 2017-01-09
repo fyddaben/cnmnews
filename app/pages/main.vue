@@ -5,7 +5,7 @@
         <h2 class="header-title">
           CNMNEWS
         </h2>
-        <div class="header-more">
+        <div class="header-more" @touchend='goSource'>
           <i class="material-icons">view_module</i>
         </div>
       </div>
@@ -34,6 +34,17 @@
     </div>
   </div>
 </template>
+<script>
+  export default {
+    methods: {
+      goSource() {
+        this.$router.push({
+          path: '/source'
+        });
+      }
+    }
+  }
+</script>
 <style>
 :root {
   --mainColor: red;
@@ -43,6 +54,7 @@
   background: #3C4B57;
   color: #fff;
   position: fixed;
+  z-index: 10;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
   @m container{
     display: flex;
@@ -59,8 +71,13 @@
     font-size: 20px;
   }
   @m more{
+    width: 40px;
+    height: 40px;
     position: relative;
-    height: 56px;
+    border-radius: 50%;
+  }
+  @m more:active{
+    background: #151313;
   }
 }
 .news-panel{

@@ -1,4 +1,6 @@
 import Vue from 'vue';
+var VueResource = require('vue-resource');
+Vue.use(VueResource);
 import {router} from './router.js'
 import {store}  from './store.js'
 

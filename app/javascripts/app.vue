@@ -2,6 +2,9 @@
   <div id="app">
     <router-view></router-view>
     <loader></loader>
+    <div class="footer">
+     Copyright © <a href='https://fyddaben.github.io/blog/'>CNMNEWS</a> 2017.  <br>Powered by  <a href='https://newsapi.org/'>News API</a>.
+    </div>
   </div>
 </template>
 <style>
@@ -37,7 +40,15 @@
     transform: translate(-12px,-12px);
     line-height: 24px;
     width: 24px;
-    margin-left: -12px;
+  }
+  .footer{
+    font-size: 12px;
+    text-align: center;
+    color: #ccc;
+    margin-top: 20px;
+    & a{
+      color: #ccc;
+    }
   }
 </style>
 <script >
@@ -63,6 +74,9 @@ export default {
 
     // 显示loader
     this.$store.dispatch('setloadershow', false);
+    document.body.addEventListener('touchstart', function () {
+      //...空函数即可
+    });
   },
   components: {
     Loader,
