@@ -11,22 +11,22 @@
       </div>
     </div>
     <div class="news-panel">
-      <div class="cell">
+      <div class="cell" v-for='item in newslist' @touchend='goUrl(item.url)'>
         <div class="cell-card">
           <div class="cell-card-title">
-              <img class='cell-card-title-img' src="http://www.codnauts.com/themes/gravity/app/indigo/img/2.jpg" alt="">
+              <img class='cell-card-title-img' :src="item.urlToImage" alt="">
               <h2 class="cell-card-title-text">
-              Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+                {{item.title}}
               </h2>
           </div>
           <div class="cell-card-content">
-              Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.
+            {{item.description}}
           </div>
           <div class="cell-card-info">
-            <div class="cell-user-img">J</div>
+            <div class="cell-user-img">{{item.first}}</div>
             <div class="cell-author-block">
-              <h3 class="cell-author-name">JohnaNan</h3>
-              <div class="cell-news-date">6 days ago</div>
+              <h3 class="cell-author-name">{{item.author}}</h3>
+              <div class="cell-news-date">{{item.time}}</div>
             </div>
           </div>
         </div>
@@ -36,11 +36,25 @@
 </template>
 <script>
   export default {
+    data() {
+      return {
+        newslist: null,
+      }
+    },
+    computed:{
+      newslist() {
+        return this.$store.state.newslist;
+      }
+    },
+
     methods: {
       goSource() {
         this.$router.push({
           path: '/source'
         });
+      },
+      goUrl(url) {
+        location.href = url;
       }
     }
   }
@@ -86,8 +100,7 @@
   padding-right: 8px;
 }
 @b cell {
-  width: calc(100% - 16px);
-  margin: 8px;
+  padding: 8px;
   @m card{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     width: 100%;
