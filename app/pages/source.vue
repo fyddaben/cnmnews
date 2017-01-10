@@ -30,15 +30,13 @@
         sourcelist: [],
       }
     },
+    computed: {
+      sourcelist() {
+        return this.$store.state.sourcelist;
+      }
+    },
     mounted() {
       let that = this;
-      this.$http.get('//newsapi.org/v1/sources?language=en').then((response) => {
-        // success callback
-        that.sourcelist = response.body.sources;
-        that.sourcelist[0].isactive = true;
-      }, (response) => {
-        console.log(response);
-      });
     },
     methods: {
       goback() {

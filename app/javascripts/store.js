@@ -9,6 +9,10 @@ const store = new Vuex.Store({
     winwid: 0,
     // 是否显示loader
     isshowloader: false,
+    // 来源列表
+    sourcelist: [],
+    // 新闻列表
+    newslist: [],
   },
   mutations: {
     setloadershow(state, n) {
@@ -20,6 +24,12 @@ const store = new Vuex.Store({
     setWinWid(state, n) {
       state.winwid = n
     },
+    setSourceList(state, n) {
+      state.sourcelist = n
+    },
+    setNewsList(state, n) {
+      state.newslist = n
+    }
   },
   actions: {
     // 初始化更新数据
@@ -32,6 +42,12 @@ const store = new Vuex.Store({
     setloadershow(context, obj) {
       context.commit('setloadershow', obj);
     },
+    setSourceList(context, obj) {
+      context.commit('setSourceList', obj);
+    },
+    setNewsList(context, obj) {
+      context.commit('setNewsList', obj);
+    }
   }
 });
 

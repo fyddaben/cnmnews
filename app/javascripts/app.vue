@@ -73,10 +73,38 @@ export default {
     this.$store.dispatch('setWinWid', winWid);
 
     // 显示loader
-    this.$store.dispatch('setloadershow', false);
+    this.$store.dispatch('setloadershow', true);
     document.body.addEventListener('touchstart', function () {
       //...空函数即可
     });
+    //获取所有source-list值
+    this.getSourceList();
+  },
+  methods: {
+    // 获取来源列表
+    getSourceList() {
+      let that = this;
+      this.$http.get('//newsapi.org/v1/sources?language=en').then((response) => {
+        // success callback
+        let sourcelist = response.body.sources;
+        sourcelist[0].isactive = true;
+        that.$store.dispatch('setSourceList', sourcelist);
+        that.getNewsList(sourcelist[0].id, that);
+      }, (response) => {
+        console.log(response);
+      });
+    },
+    // 获取新闻列表
+    getNewsList(_id, that) {
+      that.$http.get('//newsapi.org/v1/articles?source=' + _id + '&apiKey=b7ea162d98c54afd98004b2761a81c73').then((response) => {
+        // success callback
+        let newslist = response.body.articles;
+        that.$store.dispatch('setNewsList', newslist);
+        that.$store.dispatch('setloadershow', false);
+      }, (response) => {
+        console.log(response);
+      });
+    }
   },
   components: {
     Loader,
