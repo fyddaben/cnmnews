@@ -22,6 +22,7 @@ var entries = function() {
     return map;
 };
 var entriPath = entries();
+entriPath['vendor'] = ['vue', 'vuerouter', 'vuex', 'vue-resource', 'moment'];
 var pluginList = [];
 var jsOutputName = '';
 pluginList.push(
@@ -32,12 +33,15 @@ pluginList.push(
   })
 );
 pluginList.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  );
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  })
+);
+pluginList.push(
+  new webpack.optimize.CommonsChunkPlugin('vendor','vendor_[hash:8].js')
+);
 pluginList.push(
   new AssetsPlugin({
     filename: 'assets.json',
@@ -49,7 +53,8 @@ pluginList.push(
         fs.readFile(srcpath,'utf-8',function(err,data){
           var htmlStr = ejs.render(data, {
             isdebug: false,
-            assetshash: assets[fp].js
+            assetshash: assets[fp].js,
+            vendorhash:assets['vendor'].js,
           });
           fs.writeFile(distpath,htmlStr,function(err){
             if(!err)
@@ -62,13 +67,19 @@ pluginList.push(
 );
 
 jsOutputName = '[name]_[hash:8].js';
-module.exports = {
+var config = {
   entry: entriPath,
   output: {
     path: path.resolve(__dirname, '../dist/jsmin/'),
     // 主要用于code spling, 静态资源域名地址
     publicPath: domain.cdn,
     filename: jsOutputName,
+  },
+  addVendor: function (name, path) {
+    // alias
+    this.resolve.alias[name] = path;
+    // 不用解析的包
+    this.module.noParse.push(new RegExp(path));
   },
   module: {
     loaders: [
@@ -89,16 +100,12 @@ module.exports = {
           plugins: ['transform-runtime']
         }
       }
-    ]
+    ],
+    noParse:[],
   },
   resolve: {
     root: path.join(__dirname, "../node_modules"),
-    alias: {
-      'vue':path.join(__dirname, "../node_modules/vue/dist/vue.js"),
-      'vuerouter':path.join(__dirname, "../node_modules/vue-router/dist/vue-router.js"),
-      'vuex':path.join(__dirname, "../node_modules/vuex/dist/vuex.js"),
-      'vue-resource':path.join(__dirname, "../node_modules/vue-resource/dist/vue-resource.js"),
-    }
+    alias:{}
   },
   resolveLoader: {
     root: path.join(__dirname, "../node_modules"),
@@ -122,3 +129,13 @@ module.exports = {
   },
   plugins: pluginList
 };
+
+config.addVendor('vue', path.join(__dirname, "../node_modules/vue/dist/vue.js"));
+config.addVendor('vuerouter', path.join(__dirname, "../node_modules/vue-router/dist/vue-router.js"));
+config.addVendor('vuex', path.join(__dirname, "../node_modules/vuex/dist/vuex.js"));
+config.addVendor('vue-resource', path.join(__dirname, "../node_modules/vue-resource/dist/vue-resource.js"));
+config.addVendor('moment', path.join(__dirname, "../node_modules/moment/min/moment.min.js"));
+
+module.exports = config;
+
+
