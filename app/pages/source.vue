@@ -12,7 +12,7 @@
       </div>
     </div>
     <ul class="source-list" >
-      <li v-for="(item, index) in sourcelist" @touchend='activeTab(index)'>
+      <li v-for="(item, index) in sourcelist" v-touch:tap='activeTab(index)'>
         <a :class="{ active: item.isactive }" >
           <div class="img" :title='item.name' :style="{backgroundImage: 'url(' + item.urlsToLogos.small + ')'}"></div>
           <div class="angle">

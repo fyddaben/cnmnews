@@ -1,5 +1,7 @@
 import Vue from 'vue';
 var VueResource = require('vue-resource');
+var VueTouch = require('vue-touch');
+Vue.use(VueTouch);
 Vue.use(VueResource);
 import {router} from './router.js'
 import {store}  from './store.js'

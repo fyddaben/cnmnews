@@ -13,6 +13,8 @@ const store = new Vuex.Store({
     sourcelist: [],
     // 新闻列表
     newslist: [],
+    // 是否更新新闻列表
+    isupdatenews:0
   },
   mutations: {
     setloadershow(state, n) {
@@ -29,6 +31,9 @@ const store = new Vuex.Store({
     },
     setNewsList(state, n) {
       state.newslist = n
+    },
+    setIsupdateNews(state, n) {
+      state.isupdatenews = n
     }
   },
   actions: {
@@ -47,6 +52,9 @@ const store = new Vuex.Store({
     },
     setNewsList(context, obj) {
       context.commit('setNewsList', obj);
+    },
+    setIsupdateNews(context, obj) {
+      context.commit('setIsupdateNews', obj);
     }
   }
 });
