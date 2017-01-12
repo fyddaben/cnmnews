@@ -91,7 +91,11 @@ export default {
         let sourcelist = response.body.sources;
         sourcelist[0].isactive = true;
         that.$store.dispatch('setSourceList', sourcelist);
-        that.getNewsList(sourcelist[0].id, that);
+        let _id = sourcelist[0].id;
+        if (localStorage.source) {
+          _id = localStorage.source;
+        }
+        that.getNewsList(_id, that);
       }, (response) => {
         console.log(response);
       });

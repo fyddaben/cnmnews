@@ -12,8 +12,8 @@
       </div>
     </div>
     <ul class="source-list" >
-      <li v-for="item in sourcelist">
-        <a :class="{ active: item.isactive }">
+      <li v-for="(item, index) in sourcelist" @touchend='activeTab(index)'>
+        <a :class="{ active: item.isactive }" >
           <div class="img" :title='item.name' :style="{backgroundImage: 'url(' + item.urlsToLogos.small + ')'}"></div>
           <div class="angle">
             <i class="material-icons">check</i>
@@ -39,6 +39,17 @@
       let that = this;
     },
     methods: {
+      // 激活当前tab
+      activeTab(index) {
+        let sourcelist = [];
+        this.sourcelist.forEach((e, i) => {
+          e.isactive = false;
+          sourcelist.push(e);
+        });
+        sourcelist[index].isactive = true;
+        localStorage.source = sourcelist[index].id;
+        this.$store.dispatch('setSourceList', sourcelist);
+      },
       goback() {
         this.$router.push({
           path: '/'
@@ -118,10 +129,13 @@
       font-weight: bold;
     }
     & .source-list .active{
-      background: rgb(128, 225, 239);
+      background: rgb(153, 170, 173);
     }
     & .source-list .active .angle{
       display: block;
+    }
+    & .source-list a{
+      transition: background .3s ease;
     }
     & .source-list a:active{
       background: #ccc;
