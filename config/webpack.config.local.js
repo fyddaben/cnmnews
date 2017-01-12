@@ -23,7 +23,7 @@ var entries = function() {
     return map;
 };
 var entriPath = entries();
-entriPath['vendor'] = ['vue', 'vuerouter', 'vuex', 'vue-resource', 'moment'];
+entriPath['vendor'] = ['hammer', 'vue', 'vuerouter', 'vuex', 'vue-touch', 'vue-resource', 'moment'];
 var pluginList = [];
 var jsOutputName = '';
 pluginList.push(
@@ -101,11 +101,13 @@ var config = {
     ],
     noParse:[],
   },
+  // 应用层引用
   resolve: {
-    root: path.join(__dirname, "../node_modules"),
+    root:[path.join(__dirname, "../node_modules")],
     alias: {
     }
   },
+  //loader 模块引用
   resolveLoader: {
     root: path.join(__dirname, "../node_modules"),
   },
@@ -134,5 +136,7 @@ config.addVendor('vuerouter', path.join(__dirname, "../node_modules/vue-router/d
 config.addVendor('vuex', path.join(__dirname, "../node_modules/vuex/dist/vuex.js"));
 config.addVendor('vue-resource', path.join(__dirname, "../node_modules/vue-resource/dist/vue-resource.js"));
 config.addVendor('moment', path.join(__dirname, "../node_modules/moment/min/moment.min.js"));
+config.addVendor('vue-touch', path.join(__dirname, "../node_modules/vue-touch-easyhi/vue-touch.min.js"));
+config.addVendor('hammer', path.join(__dirname, "../node_modules/hammerjs/hammer.min.js"));
 
 module.exports = config;

@@ -57,7 +57,12 @@ import moment from 'moment';
 export default {
   data() {
     return {
-
+      isupatenews: false,
+    }
+  },
+  computed: {
+    isupatenews() {
+      return this.$store.state.isupdatenews;
     }
   },
   mounted() {
@@ -82,6 +87,11 @@ export default {
     //获取所有source-list值
     this.getSourceList();
   },
+  watch: {
+    isupatenews() {
+      this.getNewsList();
+    }
+  },
   methods: {
     // 获取来源列表
     getSourceList() {
@@ -91,13 +101,22 @@ export default {
         let sourcelist = response.body.sources;
         sourcelist[0].isactive = true;
         that.$store.dispatch('setSourceList', sourcelist);
-        that.getNewsList(sourcelist[0].id, that);
+        let _id = sourcelist[0].id;
+        if (!localStorage.source) {
+          localStorage.source = _id;
+        }
+        let updatenews = that.isupatenews + 1;
+        that.$store.dispatch('setIsupdateNews', updatenews);
+
       }, (response) => {
         console.log(response);
       });
     },
+
     // 获取新闻列表
-    getNewsList(_id, that) {
+    getNewsList() {
+      let  _id = localStorage.source;
+      let that = this;
       that.$http.get('//newsapi.org/v1/articles?source=' + _id + '&apiKey=b7ea162d98c54afd98004b2761a81c73').then((response) => {
         let newslist = response.body.articles;
         for (let i in newslist) {

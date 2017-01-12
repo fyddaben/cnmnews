@@ -2,7 +2,7 @@
 set -e
 
 build_local() {
-  firebase serve &
+  firebase serve -p 5000 &
   NODE_ENV=local node bundle.js
 }
 
