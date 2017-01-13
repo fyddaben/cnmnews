@@ -79,7 +79,7 @@ export default {
     this.$store.dispatch('setWinWid', winWid);
 
     // 显示loader
-    this.$store.dispatch('setloadershow', true);
+    //this.$store.dispatch('setloadershow', true);
     document.body.addEventListener('touchstart', function () {
       //...空函数即可
     });
@@ -103,12 +103,12 @@ export default {
         // success callback
         let sourcelist = response.body.sources;
         sourcelist[0].isactive = true;
-        that.$store.dispatch('setSourceList', sourcelist);
         let _id = sourcelist[0].id;
         if (!localStorage.source) {
           localStorage.source = _id;
         }
         let updatenews = that.isupatenews + 1;
+        that.$store.dispatch('setSourceList', sourcelist);
         that.$store.dispatch('setIsupdateNews', updatenews);
 
       }, (response) => {
@@ -137,7 +137,8 @@ export default {
       }, (response) => {
         console.log(response);
       });
-    }
+    },
+
   },
   components: {
     Loader,

@@ -14,13 +14,12 @@
       <div class="cell" v-for='item in newslist' @click='goUrl(item.url)' >
         <div class="cell-card">
           <div class="cell-card-title">
-              <img class='cell-card-title-img' :src="item.urlToImage" alt="" >
-              <h2 class="cell-card-title-text">
-                {{item.title}}
-              </h2>
+            <img class='cell-card-title-img'  v-lazy="item.urlToImage" alt="">
           </div>
-          <div class="cell-card-content" >
-            {{item.description}}
+          <div class="cell-card-title-text" >
+            <div class="container">
+              {{item.title}}
+            </div>
           </div>
           <div class="cell-card-info" >
             <div class="cell-user-img">{{item.first}}</div>
@@ -126,34 +125,31 @@
     color: #fff;
     padding: 0px;
     position: relative;
+    width: 100%;
+    min-height: 100px;
+    background: #ccc;
   }
   @m card-title-img{
     position: relative;
     width: 100%;
-    height: auto;
+    transition: all .4s ease;
   }
+
+
   @m card-title-text{
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    margin: 20px;
-    color: #fff;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 24px;
+    overflow: hidden;
+    padding: 16px;
+    border-top: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+  }
+  @m card-title-text .container{
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-  }
-  @m card-content{
-    font-size: 13px;
-    line-height: 18px;
-    overflow: hidden;
-    padding: 16px;
-    border-top: 1px solid rgba(0,0,0,.1);
-    background: #fff;
   }
   @m card-info{
     height: 56px;

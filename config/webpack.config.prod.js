@@ -22,7 +22,7 @@ var entries = function() {
     return map;
 };
 var entriPath = entries();
-entriPath['vendor'] = ['fastclick', 'vue', 'vuerouter', 'vuex', 'vue-resource', 'moment'];
+entriPath['vendor'] = ['fastclick', 'vue', 'vuerouter', 'vuex', 'vue-resource', 'moment', 'vue-lazyload'];
 var pluginList = [];
 var jsOutputName = '';
 pluginList.push(
