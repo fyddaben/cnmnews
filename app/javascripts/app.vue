@@ -86,6 +86,9 @@ export default {
 
     //获取所有source-list值
     this.getSourceList();
+
+    var attachFastClick = require('fastclick');
+    attachFastClick(document.body);
   },
   watch: {
     isupatenews() {
