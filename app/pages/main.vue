@@ -11,22 +11,22 @@
       </div>
     </div>
     <div class="news-panel" id='J_newspanel'>
-      <div class="cell" v-for='item in newslist' v-touch:tap.self='goUrl' >
+      <div class="cell" v-for='item in newslist' @click='goUrl(item.url)' >
         <div class="cell-card">
           <div class="cell-card-title">
-              <img class='cell-card-title-img' :src="item.urlToImage" alt="" :data-url='item.url'>
-              <h2 class="cell-card-title-text":data-url='item.url' >
+              <img class='cell-card-title-img' :src="item.urlToImage" alt="" >
+              <h2 class="cell-card-title-text">
                 {{item.title}}
               </h2>
           </div>
-          <div class="cell-card-content" :data-url='item.url'>
+          <div class="cell-card-content" >
             {{item.description}}
           </div>
-          <div class="cell-card-info" :data-url='item.url'>
-            <div class="cell-user-img" :data-url='item.url'>{{item.first}}</div>
+          <div class="cell-card-info" >
+            <div class="cell-user-img">{{item.first}}</div>
             <div class="cell-author-block">
-              <h3 class="cell-author-name" :data-url='item.url'>{{item.author}}</h3>
-              <div class="cell-news-date" :data-url='item.url'>{{item.time}}</div>
+              <h3 class="cell-author-name">{{item.author}}</h3>
+              <div class="cell-news-date" >{{item.time}}</div>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
           path: '/source'
         });
       },
-      goUrl(e) {
+      goUrl(url) {
         location.href = url;
       }
     }

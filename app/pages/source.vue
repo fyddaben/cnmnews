@@ -12,9 +12,9 @@
       </div>
     </div>
     <ul class="source-list" >
-      <li v-for="(item, index) in sourcelist" v-touch:tap='activeTab' >
+      <li v-for="(item, index) in sourcelist" @click='activeTab(index)' >
         <a :class="{ active: item.isactive }" >
-          <div class="img" :data-index='index' :title='item.name' :style="{backgroundImage: 'url(' + item.urlsToLogos.small + ')'}"></div>
+          <div class="img"  :title='item.name' :style="{backgroundImage: 'url(' + item.urlsToLogos.small + ')'}"></div>
           <div class="angle">
             <i class="material-icons">check</i>
           </div>
@@ -40,8 +40,7 @@
     },
     methods: {
       // 激活当前tab
-      activeTab(e) {
-        let index = e.target.getAttribute('data-index');
+      activeTab(index) {
         let sourcelist = [];
         this.sourcelist.forEach((e, i) => {
           e.isactive = false;
