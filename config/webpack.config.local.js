@@ -23,7 +23,7 @@ var entries = function() {
     return map;
 };
 var entriPath = entries();
-entriPath['vendor'] = ['fastclick', 'vue', 'vuerouter', 'vuex', 'vue-resource', 'moment'];
+entriPath['vendor'] = ['fastclick', 'vue', 'vuerouter', 'vuex', 'vue-resource', 'moment', 'vue-lazyload'];
 var pluginList = [];
 var jsOutputName = '';
 pluginList.push(
@@ -137,5 +137,6 @@ config.addVendor('vuex', path.join(__dirname, "../node_modules/vuex/dist/vuex.js
 config.addVendor('vue-resource', path.join(__dirname, "../node_modules/vue-resource/dist/vue-resource.js"));
 config.addVendor('moment', path.join(__dirname, "../node_modules/moment/min/moment.min.js"));
 config.addVendor('fastclick', path.join(__dirname, "../node_modules/fastclick/lib/fastclick.js"));
+//config.addVendor('vue-lazyload', path.join(__dirname, "../node_modules/vue-lazyload/vue-lazyload.js"));
 
 module.exports = config;

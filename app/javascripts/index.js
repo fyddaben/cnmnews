@@ -1,6 +1,10 @@
 import Vue from 'vue';
+import VueLazyload from 'vue-lazyload'
 var VueResource = require('vue-resource');
 Vue.use(VueResource);
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+})
 import {router} from './router.js'
 import {store}  from './store.js'
 
