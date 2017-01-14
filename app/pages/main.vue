@@ -5,9 +5,9 @@
         <h2 class="header-title">
           CNMNEWS
         </h2>
-        <div class="header-more" @touchend='goSource'>
+        <!--div class="header-more" @touchend='goSource'>
           <i class="material-icons">view_module</i>
-        </div>
+        </div-->
       </div>
     </div>
     <div class="news-panel" id='J_newspanel'>
