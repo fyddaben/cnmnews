@@ -61,6 +61,19 @@ pluginList.push(
               console.log("写入成功！")
           });
         });
+
+        // 读取文件 sw.js
+        fs.readFile(path.join(__dirname, '../app/sw.js'),'utf-8',function(err,data){
+          var htmlStr = ejs.render(data, {
+            assetshash: assets[fp].js,
+            vendorhash:assets['vendor'].js,
+          });
+          fs.writeFile(path.join(__dirname, '../dist/sw.js'),htmlStr,function(err){
+            if(!err)
+              console.log("写入sw.js成功！")
+          });
+        });
+
       });
 	  }
 	})

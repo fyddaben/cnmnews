@@ -8,7 +8,6 @@ build_local() {
 
 build_clean() {
   echo "clean dist dir ..."
-  rm -rf ./dist/*;
 }
 
 build_prod() {
