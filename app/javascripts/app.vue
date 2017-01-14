@@ -98,34 +98,37 @@ export default {
     // 获取来源列表
     getSourceList() {
       let that = this;
-      this.$http.get('//newsapi.org/v1/sources?language=en').then((response) => {
-        // success callback
-        let sourcelist = response.body.sources;
-        let vaildSourcelist = ['ars-technica', 'bloomberg', 'buzzfeed', 'engadget', 'fortune', 'google-news', 'new-scientist', 'polygon', 'recode', 'techcrunch', 'the-guardian-au', 'the-guardian-uk', 'the-verge', 'the-wall-street-journal', 'the-washington-post', 'wired-de'];
-        let newlist = [];
-        sourcelist.forEach(function(e) {
-          let has = false;
-          for (let i in vaildSourcelist) {
-            if (vaildSourcelist[i] == e.id) {
-              has = true;
-            }
-          }
-          if (has) {
-            newlist.push(e);
-          }
-        });
-        newlist[0].isactive = true;
-        let _id = newlist[0].id;
+      //this.$http.get('//newsapi.org/v1/sources?language=en').then((response) => {
+      //  // success callback
+      //  let sourcelist = response.body.sources;
+      //
+      let vaildSourcelist = ['ars-technica', 'bloomberg', 'buzzfeed', 'engadget', 'fortune', 'google-news', 'new-scientist', 'polygon', 'recode', 'techcrunch', 'the-guardian-au', 'the-guardian-uk', 'the-verge', 'the-wall-street-journal', 'the-washington-post', 'wired-de'];
+      //  let newlist = [];
+      //  sourcelist.forEach(function(e) {
+      //    let has = false;
+      //    for (let i in vaildSourcelist) {
+      //      if (vaildSourcelist[i] == e.id) {
+      //        has = true;
+      //      }
+      //    }
+      //    if (has) {
+      //      newlist.push(e);
+      //    }
+      //  });
+      //  newlist[0].isactive = true;
+        let randomindex = parseInt(Math.random()* vaildSourcelist.length);
+        let _id = vaildSourcelist[randomindex];
+        console.log(_id);
         if (!localStorage.source) {
           localStorage.source = _id;
         }
         let updatenews = that.isupatenews + 1;
-        that.$store.dispatch('setSourceList', newlist);
+        //that.$store.dispatch('setSourceList', newlist);
         that.$store.dispatch('setIsupdateNews', updatenews);
 
-      }, (response) => {
-        console.log(response);
-      });
+      //}, (response) => {
+      //  console.log(response);
+      //});
     },
 
     // 获取新闻列表

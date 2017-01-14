@@ -1,10 +1,10 @@
-var CACHE_VERSION = 1.4;
+var CACHE_VERSION = 1.6;
 var CURRENT_CACHES = {
   prefetch: 'cache-v' + CACHE_VERSION
 };
 var urlsToPrefetch = [
   'index.html',
-  'http://127.0.0.1:8081/jsmin/index_1c843a4c.js',
+  'http://127.0.0.1:8081/jsmin/index_a686c447.js',
   'http://127.0.0.1:8081/jsmin/vendor.js',
 ];
 
