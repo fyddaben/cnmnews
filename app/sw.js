@@ -98,7 +98,7 @@ self.addEventListener('fetch', function(event) {
           }
           console.log(' No response for %s found in cache. ' +
             'About to fetch from network...', event.request.url);
-          var corsRequest = new Request(event.request.clone().url, {mode: 'cors'});
+          var corsRequest = new Request(event.request.clone().url, {mode: 'no-cors'});
           return fetch(corsRequest).then(function(response) {
 
             if (response.status < 400) {
