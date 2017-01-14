@@ -101,13 +101,26 @@ export default {
       this.$http.get('//newsapi.org/v1/sources?language=en').then((response) => {
         // success callback
         let sourcelist = response.body.sources;
-        sourcelist[0].isactive = true;
-        let _id = sourcelist[0].id;
+        let vaildSourcelist = ['ars-technica', 'bloomberg', 'buzzfeed', 'engadget', 'fortune', 'google-news', 'new-scientist', 'polygon', 'recode', 'techcrunch', 'the-guardian-au', 'the-guardian-uk', 'the-verge', 'the-wall-street-journal', 'the-washington-post', 'wired-de'];
+        let newlist = [];
+        sourcelist.forEach(function(e) {
+          let has = false;
+          for (let i in vaildSourcelist) {
+            if (vaildSourcelist[i] == e.id) {
+              has = true;
+            }
+          }
+          if (has) {
+            newlist.push(e);
+          }
+        });
+        newlist[0].isactive = true;
+        let _id = newlist[0].id;
         if (!localStorage.source) {
           localStorage.source = _id;
         }
         let updatenews = that.isupatenews + 1;
-        that.$store.dispatch('setSourceList', sourcelist);
+        that.$store.dispatch('setSourceList', newlist);
         that.$store.dispatch('setIsupdateNews', updatenews);
 
       }, (response) => {
