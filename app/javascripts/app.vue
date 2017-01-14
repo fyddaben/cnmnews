@@ -78,8 +78,6 @@ export default {
     this.$store.dispatch('setWinHei', winHei);
     this.$store.dispatch('setWinWid', winWid);
 
-    // 显示loader
-    this.$store.dispatch('setloadershow', true);
     document.body.addEventListener('touchstart', function () {
       //...空函数即可
     });
@@ -134,7 +132,6 @@ export default {
           newslist[i].time = moment(newslist[i].publishedAt).fromNow();
         }
         that.$store.dispatch('setNewsList', newslist);
-        that.$store.dispatch('setloadershow', false);
       }, (response) => {
         console.log(response);
       });
