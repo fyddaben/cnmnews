@@ -1,10 +1,10 @@
-var CACHE_VERSION = 1.3;
+var CACHE_VERSION = 1.4;
 var CURRENT_CACHES = {
   prefetch: 'cache-v' + CACHE_VERSION
 };
 var urlsToPrefetch = [
   'index.html',
-  'http://127.0.0.1:8081/jsmin/index_4c88f116.js',
+  'http://127.0.0.1:8081/jsmin/index_d9320fa3.js',
   'http://127.0.0.1:8081/jsmin/vendor.js',
 ];
 
@@ -78,7 +78,7 @@ self.addEventListener('fetch', function(event) {
       return cache.match(event.request).then(function(response) {
         var regex = /:\/\/newsapi.org\//;
         if (event.request.url.match(regex)) {
-          var fetchpromise = fetch(event.request).then(function(networkresponse) {
+          var fetchpromise = fetch(event.request.clone()).then(function(networkresponse) {
             console.log('regex Response from network is:', networkresponse);
             cache.put(event.request, networkresponse.clone());
             return networkresponse;
@@ -98,7 +98,8 @@ self.addEventListener('fetch', function(event) {
           }
           console.log(' No response for %s found in cache. ' +
             'About to fetch from network...', event.request.url);
-          return fetch(event.request.clone()).then(function(response) {
+          var corsRequest = new Request(event.request.clone().url, {mode: 'cors'});
+          return fetch(corsRequest).then(function(response) {
 
             if (response.status < 400) {
               // (https://fetch.spec.whatwg.org/#dom-request-clone)
@@ -115,34 +116,4 @@ self.addEventListener('fetch', function(event) {
     })
   );
 });
-//self.addEventListener('fetch', function(event) {
-//  var regex = /:\/\/newsapi.org\//;
-//  // 如果是newsapi 就需要传回并更新返回值
-//  if (event.request.url.match(regex)) {
-//    console.log('match url',event.request.url);
-//    caches.open(CURRENT_CACHES.prefetch).then(function(cache) {
-//      return cache.match(event.request).then(function(response) {
-//        //这里就是总在更新当前url返回值
-//        var fetchPromise = fetch(event.request).then(function(networkResponse) {
-//          cache.put(event.request, networkResponse.clone());
-//          return networkResponse;
-//        })
-//        return response || fetchPromise;
-//      })
-//    })
-//  } else {
-//    console.log('no match url',event.request.url);
-//    // 否则，则返回固定缓存，没有就取
-//    caches.open(CURRENT_CACHES.prefetch).then(function(cache) {
-//      return cache.match(event.request).then(function (response) {
-//        console.log(response);
-//        // 有的就传回，没有就去取
-//        return response || fetch(event.request).then(function(response) {
-//          cache.put(event.request, response.clone());
-//          return response;
-//        });
-//      });
-//    })
-//  }
-//
-//});
+
