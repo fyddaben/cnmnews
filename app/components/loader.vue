@@ -5,6 +5,9 @@
       <div class="inner two"></div>
       <div class="inner three"></div>
     </div>
+    <div class="footer-info">
+      Center New Media News
+    </div>
   </div>
 </template>
 <script>
@@ -43,6 +46,15 @@
     border-radius: 50%;
     perspective: 800px;
     z-index: 1000;
+  }
+  .loader-panel .footer-info{
+    position: absolute;
+    width: 100%;
+    text-align:center;
+    color: #fff;
+    bottom: 10%;
+    left: 0px;
+    font-size: 14px;
   }
 
   .inner {

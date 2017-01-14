@@ -1,0 +1,17 @@
+{
+  "name": "Center New Media News",
+  "short_name": "CNMNEWS",
+  "icons": [{
+      "src": "/logo-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }, {
+      "src": "/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#3C4B57",
+  "theme_color": "#f1f4f5"
+}

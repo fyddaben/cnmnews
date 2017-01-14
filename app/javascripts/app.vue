@@ -79,7 +79,7 @@ export default {
     this.$store.dispatch('setWinWid', winWid);
 
     // 显示loader
-    //this.$store.dispatch('setloadershow', true);
+    this.$store.dispatch('setloadershow', true);
     document.body.addEventListener('touchstart', function () {
       //...空函数即可
     });
@@ -87,6 +87,7 @@ export default {
     //获取所有source-list值
     this.getSourceList();
 
+    // 注册fastclick
     var attachFastClick = require('fastclick');
     attachFastClick(document.body);
   },
