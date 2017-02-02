@@ -14,7 +14,7 @@
       <div class="cell" v-for='item in newslist' @click='goUrl(item.url)' >
         <div class="cell-card">
           <div class="cell-card-title">
-            <img class='cell-card-title-img'  v-lazy="item.urlToImage" alt="">
+            <img class='cell-card-title-img'  v-lazy="toHttps(item.urlToImage)" alt="">
           </div>
           <div class="cell-card-title-text" >
             <div class="container">
@@ -42,7 +42,7 @@
     },
     computed:{
       newslist() {
-        return this.$store.state.newslist;
+        return  this.$store.state.newslist;
       }
     },
     mounted(){
@@ -58,6 +58,9 @@
       });
     },
     methods: {
+      toHttps(url) {
+        return url.replace('http://','https://');
+      },
       goSource() {
         this.$router.push({
           path: '/source'

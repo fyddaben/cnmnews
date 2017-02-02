@@ -4,7 +4,7 @@ var CURRENT_CACHES = {
 };
 var urlsToPrefetch = [
   'index.html',
-  'http://127.0.0.1:8081/jsmin/index_a686c447.js',
+  'http://127.0.0.1:8081/jsmin/index_e09889e7.js',
   'http://127.0.0.1:8081/jsmin/vendor.js',
 ];
 
@@ -98,7 +98,7 @@ self.addEventListener('fetch', function(event) {
           }
           console.log(' No response for %s found in cache. ' +
             'About to fetch from network...', event.request.url);
-          var corsRequest = new Request(event.request.clone().url, {mode: 'cors'});
+          var corsRequest = new Request(event.request.clone().url, {mode: 'no-cors'});
           return fetch(corsRequest).then(function(response) {
 
             if (response.status < 400) {
